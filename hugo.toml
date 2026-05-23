@@ -1,4 +1,40 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'AJUNE的个人空间'
 theme = "PaperMod"
+
+# 启用 Hugo 资源压缩（minify）
+[minify]
+	disableXML = false
+	minifyOutput = true
+	[minify.tdewolff]
+		[minify.tdewolff.html]
+			keepWhitespace = false
+		[minify.tdewolff.css]
+			keepCSS2 = false
+		[minify.tdewolff.js]
+			keepVarNames = false
+
+[[menu.main]]
+	identifier = "home"
+	name = "主页"
+	url = "/"
+	weight = 1
+
+[[menu.main]]
+	identifier = "projects"
+	name = "项目"
+	url = "/projects/"
+	weight = 2
+
+[[menu.main]]
+	identifier = "about"
+	name = "关于"
+	url = "/about/"
+	weight = 3
+
+[[menu.main]]
+	identifier = "examples"
+	name = "例子"
+	url = "/examples/"
+	weight = 4
