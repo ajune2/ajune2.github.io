@@ -6,7 +6,9 @@
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 2.5;
     camera.position.y = 1.0;
-    camera.lookAt(0, 0, 0);
+    // 旋涡中心目标
+    let galaxyTarget = { x: 0, y: 0, z: 0 };
+    camera.lookAt(galaxyTarget.x, galaxyTarget.y, galaxyTarget.z);
 
     const renderer = new THREE.WebGLRenderer({ 
         alpha: true, 
@@ -197,26 +199,35 @@
     let lastMouseX = null;
     let lastMouseY = null;
     let globalVirtualTime = 0;
-    window.addEventListener('mousemove', (e) => {
-        if (lastMouseX !== null && lastMouseY !== null) {
-            const deltaX = e.clientX - lastMouseX;
-            const deltaY = e.clientY - lastMouseY;
-            const speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (speed > 1.5) {
-                mouseEnergy += speed * 0.015;
+        window.addEventListener('mousemove', (e) => {
+            if (lastMouseX !== null && lastMouseY !== null) {
+                const deltaX = e.clientX - lastMouseX;
+                const deltaY = e.clientY - lastMouseY;
+                const speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                if (speed > 1.5) {
+                    mouseEnergy += speed * 0.015;
+                }
             }
-        }
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-    });
+            lastMouseX = e.clientX;
+            lastMouseY = e.clientY;
+            // 鼠标位置映射到银河中心
+            const nx = -((e.clientX / window.innerWidth) * 2 - 1);
+            const ny = ((e.clientY / window.innerHeight) * 2 - 1);
+            galaxyTarget.x = nx * 1.5;
+            galaxyTarget.y = ny * 1.0;
+            // z 保持 0
+        });
     // 鼠标滚轮滚动时也增加能量，影响速率
     window.addEventListener('wheel', (e) => {
         mouseEnergy += Math.abs(e.deltaY) * 0.01;
     });
-    window.addEventListener('mouseleave', () => {
-        lastMouseX = null;
-        lastMouseY = null;
-    });
+        window.addEventListener('mouseleave', () => {
+            lastMouseX = null;
+            lastMouseY = null;
+            // 鼠标移出时回到中心
+            galaxyTarget.x = 0;
+            galaxyTarget.y = 0;
+        });
     const clock = new THREE.Clock();
     let lastTime = 0;
     const fpsThreshold = 1 / 60;
@@ -273,6 +284,7 @@
             alphaAttribute.needsUpdate = true;
             sizeAttribute.needsUpdate = true;
         }
+        camera.lookAt(galaxyTarget.x, galaxyTarget.y, galaxyTarget.z);
         renderer.render(scene, camera);
     };
     animate();

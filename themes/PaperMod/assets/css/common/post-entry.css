@@ -43,15 +43,16 @@
     padding-inline-start: 0;
 }
 
-
 .post-entry {
     position: relative;
     margin-bottom: var(--gap);
     padding: var(--gap);
-    background: var(--entry);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius);
     transition: transform 0.25s ease;
     border: 1px solid var(--border);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
 }
 
 .post-entry:hover,
