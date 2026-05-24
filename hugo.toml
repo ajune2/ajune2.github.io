@@ -2,7 +2,7 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'AJUNE的个人空间'
 theme = "PaperMod"
-
+# disableKinds = ['taxonomy', 'term']
 # 启用 Hugo 资源压缩（minify）
 [minify]
 	disableXML = false
@@ -11,7 +11,7 @@ theme = "PaperMod"
 		[minify.tdewolff.html]
 			keepWhitespace = false
 		[minify.tdewolff.css]
-			keepCSS2 = false
+			version = 2
 		[minify.tdewolff.js]
 			keepVarNames = false
 
@@ -28,13 +28,19 @@ theme = "PaperMod"
 	weight = 2
 
 [[menu.main]]
+	identifier = "posts"
+	name = "文章"
+	url = "/posts/"
+	weight = 3
+
+[[menu.main]]
 	identifier = "about"
 	name = "关于"
 	url = "/about/"
-	weight = 3
+	weight = 4
 
 [[menu.main]]
 	identifier = "examples"
 	name = "例子"
 	url = "/examples/"
-	weight = 4
+	weight = 5
