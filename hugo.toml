@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://git.ajune.cn/'
 languageCode = 'en-us'
 title = 'AJUNE的个人空间'
 theme = "PaperMod"
