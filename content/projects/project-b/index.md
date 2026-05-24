@@ -1,11 +1,11 @@
 ---
-title: "数据可视化平台"
+title: "BBBBBBBBBBBBBBB"
 date: 2026-05-24
 summary: "B面向企业的数据分析与可视化平台。"
 cover:
   image: "cover.jpg"
   hiddenInSingle: true
-  hiddenInList: true
+  hiddenInList: false
 ---
 
 ## 项目简介

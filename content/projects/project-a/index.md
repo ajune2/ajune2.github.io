@@ -1,11 +1,11 @@
 ---
-title: "AI助手平台"
+title: "AAAAAAAAAAA"
 date: 2026-05-24
-summary: "A一个基于AI的智能助手平台，支持多种场景。"
+summary: "面向企业的数据分析与可视化平台。"
 cover:
   image: "cover.jpg"
   hiddenInSingle: true
-  hiddenInList: true
+  hiddenInList: false
 ---
 
 ## 项目简介
