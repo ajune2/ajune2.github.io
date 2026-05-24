@@ -1,0 +1,346 @@
+<div class="cyber-owner-card">
+  <div class="cyber-glow-sphere"></div>
+
+  <div class="cyber-header">
+    <div class="cyber-avatar-container">
+      <!-- 保留原结构，仅修改样式 -->
+      <div class="cyber-avatar-glow"></div>
+      <div class="cyber-avatar-inner">
+        <img src="/logo/my.jpg" alt="Owner Avatar" loading="lazy">
+      </div>
+    </div>
+    
+    <div class="cyber-title-group">
+      <h3>AJUNE</h3>
+      <div class="cyber-tags">
+        <span class="cyber-tag-primary">About Me</span>
+        <span class="cyber-tag-sub">Developer</span>
+      </div>
+    </div>
+  </div>
+
+  <ul class="cyber-info-list">
+    <li>
+      <span class="c-label">👨‍💻 昵称</span>
+      <span class="c-value">AJUNE</span>
+    </li>
+    <li>
+      <span class="c-label">🐧 QQ <small style="opacity: 0.5; font-size: 10px;">(点击复制)</small></span>
+      <span class="c-value c-clickable" onclick="copyCyberText('648185585', this)">648185585</span>
+    </li>
+    <li>
+      <span class="c-label">✉️ 邮箱</span>
+      <span class="c-value c-clickable" onclick="copyCyberText('648185585@qq.com', this)">648185585@qq.com</span>
+    </li>
+    <li>
+      <span class="c-label">🐙 GitHub</span>
+      <span class="c-value"><a href="https://github.com/ajune-wang" target="_blank" rel="noopener">ajune-wang</a></span>
+    </li>
+  </ul>
+
+  <div class="cyber-bio">
+    热爱编程开发，🚀 正在努力用代码构建更有趣的世界。
+  </div>
+
+  <div class="cyber-action">
+    <button class="cyber-like-btn" id="cyberLikeBtn" onclick="toggleCyberLike()">
+      <span class="like-heart">❤️</span>
+      <span class="like-text">Like</span>
+      <span id="cyberLikeCount" class="like-count">42</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  /* 全局样式基准对齐（保留你的毛玻璃） */
+  .cyber-owner-card {
+    position: relative;
+    min-width: 400px;
+    margin: 0 auto var(--gap) auto;
+    padding: var(--gap);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+  }
+
+  .cyber-owner-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .cyber-glow-sphere {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -60px;
+    right: -60px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cyber-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: calc(var(--gap) * 0.8);
+  }
+
+  /* ==========================================
+     ⚡ 升级：参考图同款紫蓝流光头像框
+     ========================================== */
+  .cyber-avatar-container {
+    position: relative;
+    width: 100px; /* 容器整体扩大，给流光留出空间 */
+    height: 100px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 第一层：增强版多色流光渐变 */
+  .cyber-avatar-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50% !important;
+    background: conic-gradient(
+      #06b6d4, 
+      #8b5cf6, 
+      #ec4899, 
+      #06b6d4, 
+      #8b5cf666, 
+      #06b6d4
+    );
+    filter: blur(2px); /* 轻微模糊让边缘更柔和 */
+    animation: cyberAvatarRotate 3s linear infinite;
+    z-index: 1;
+  }
+
+  /* 第二层：内嵌遮罩层 */
+  .cyber-avatar-inner {
+    position: absolute;
+    inset: 6px; /* 这里的数字决定了外面流光线条的粗细（6px） */
+    border-radius: 50% !important;
+    background: #fff; /* 白色隔离缓冲，深色主题可改为#111 */
+    padding: 3px;
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 第三层：真正的图片 */
+  .cyber-avatar-inner img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  @keyframes cyberAvatarRotate {
+    100% { transform: rotate(360deg); }
+  }
+
+  /* ==========================================
+     后续基础样式保持原样
+     ========================================== */
+  .cyber-title-group h3 {
+    margin: 0 0 6px 0;
+    font-size: 20px;
+    color: var(--primary, inherit);
+  }
+
+  .cyber-tags {
+    display: flex;
+    gap: 6px;
+  }
+
+  .cyber-tag-primary {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius);
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+  }
+
+  .cyber-tag-sub {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius);
+    color: #06b6d4;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+  }
+
+  .cyber-info-list {
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 calc(var(--gap) * 0.8) 0;
+  }
+
+  .cyber-info-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 4px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .cyber-info-list li:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+  }
+
+  .c-label {
+    color: var(--secondary, #888);
+    font-size: 14px;
+  }
+
+  .c-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary, inherit);
+  }
+
+  .c-value a {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .c-value a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  .c-clickable {
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .c-clickable:hover {
+    color: #6366f1;
+  }
+
+  .cyber-toast {
+    position: absolute;
+    background: #111;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    top: -18px;
+    right: 0;
+    animation: cyberToastAnim 0.7s ease forwards;
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  @keyframes cyberToastAnim {
+    0% { opacity: 0; transform: translateY(3px); }
+    30% { opacity: 1; transform: translateY(0); }
+    70% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-3px); }
+  }
+
+  .cyber-bio {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    color: var(--primary, inherit);
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .cyber-action {
+    position: relative;
+    z-index: 1;
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cyber-like-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--primary, inherit);
+    transition: all 0.25s ease;
+  }
+
+  .cyber-like-btn:hover {
+    background: rgba(244, 63, 94, 0.1);
+    border-color: rgba(244, 63, 94, 0.4);
+  }
+
+  .cyber-like-btn.active {
+    background: #f43f5e;
+    color: #fff;
+    border-color: #f43f5e;
+    box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+    animation: cyberPop 0.3s ease;
+  }
+
+  @keyframes cyberPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+</style>
+
+<script>
+  function copyCyberText(text, element) {
+    navigator.clipboard.writeText(text).then(() => {
+      if (element.querySelector('.cyber-toast')) return;
+      const toast = document.createElement('span');
+      toast.className = 'cyber-toast';
+      toast.innerText = '已复制!';
+      element.appendChild(toast);
+      setTimeout(() => toast.remove(), 700);
+    }).catch(err => console.error('复制失败', err));
+  }
+
+  let isCyberLiked = false;
+  function toggleCyberLike() {
+    const btn = document.getElementById('cyberLikeBtn');
+    const count = document.getElementById('cyberLikeCount');
+    let num = parseInt(count.innerText);
+    
+    if (!isCyberLiked) {
+      btn.classList.add('active');
+      count.innerText = num + 1;
+      isCyberLiked = true;
+    } else {
+      btn.classList.remove('active');
+      count.innerText = num - 1;
+      isCyberLiked = false;
+    }
+  }
+</script>

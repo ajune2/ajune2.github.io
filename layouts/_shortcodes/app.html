@@ -1,0 +1,99 @@
+<style>
+/* 你提供的毛玻璃主样式 */
+.app-card {
+  position: relative;
+  min-width: 400px;
+  margin: 0 auto var(--gap) auto;
+  padding: var(--gap);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+/* 鼠标悬浮效果 */
+.app-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 内部布局：左图 + 右文字 */
+.app-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 左侧封面图 */
+.app-cover {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 右侧文字区域 */
+.app-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 应用名称 */
+.app-title {
+  font-size: 19px;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* 描述（支持多行、大篇幅） */
+.app-desc {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+</style>
+
+<div class="app-list">
+  {{/* 遍历所有 APP 文件夹 */}}
+  {{ range readDir "static/_apps" }}
+    {{ if and .IsDir (not (in .Name "images")) }}
+      {{ $app := .Name }}
+      {{ $url := printf "/_apps/%s/" $app }}
+      {{ $img := printf "/_apps/images/%s.png" $app }}
+      {{ $descFile := printf "static/_apps/%s/desc.txt" $app }}
+
+      {{/* 读取描述文件 */}}
+      {{ $desc := "暂无描述" }}
+      {{ if fileExists $descFile }}
+        {{ $desc = readFile $descFile }}
+      {{ end }}
+
+      <!-- 毛玻璃卡片 -->
+      <div class="app-card">
+        <div class="app-inner">
+          <!-- 左侧图片（可点击） -->
+          <a href="{{ $url }}" target="_blank">
+            <img src="{{ $img }}" alt="{{ $app }}" class="app-cover">
+          </a>
+
+          <!-- 右侧：名称 + 描述 -->
+          <div class="app-info">
+            <a href="{{ $url }}" target="_blank">
+              <div class="app-title">{{ $app }}</div>
+            </a>
+            <div class="app-desc">{{ $desc }}</div>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>

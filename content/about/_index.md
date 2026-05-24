@@ -1,6 +1,4 @@
 ---
-title: "关于"
-description: "关于 AJUNE 的介绍。"
+title: "站长信息"
 ---
-
-这里是关于页，可以介绍自己或网站信息。
+{{< myowner >}}

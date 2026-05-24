@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang=en-us>
+<head>
+<meta charset=utf-8><meta content="text/html; charset=utf-8" http-equiv=Content-Type>
+<link rel="shortcut icon" href="lamp.ico" type="image/x-icon" />
+<title>OCCT WebGL Viewer Sample</title>
+  <script type="module" crossorigin src="./assets/index-DPT6oAIN.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DR_3Oofv.css">
+</head>
+<body>
+
+<div id="loadingOverlay" role="status" aria-live="polite">
+  <div id="loadingCard">
+    <div id="loadingTitle">正在加载...</div>
+    <div id="loadingText">正在准备 WebAssembly</div>
+    <div id="loadingBar"><div id="loadingBarFill"></div></div>
+  </div>
+</div>
+
+<div id="viewerContainer">
+  <canvas id=occViewerCanvas tabindex=-1></canvas>
+  <div id="toolbar">
+    <label for="fileInput">选择文件：</label>
+    <input type="file" id="fileInput" accept=".brep,.step,.stp">
+    <input type="button" id="clearButton" value="清空">
+    <input type="button" id="fitButton" value="适配全部">
+  </div>
+</div>
+
+</body>
+</html>

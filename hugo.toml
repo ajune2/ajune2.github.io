@@ -40,7 +40,7 @@ theme = "PaperMod"
 	weight = 4
 
 [[menu.main]]
-	identifier = "examples"
+	identifier = "apps"
 	name = "例子"
-	url = "/examples/"
+	url = "/apps/"
 	weight = 5
