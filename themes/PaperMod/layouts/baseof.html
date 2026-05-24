@@ -29,3 +29,31 @@
 </body>
 
 </html>
+
+<!-- three.js 银河粒子背景 start -->
+<style>
+    #three-bg-canvas {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: 100vw;
+        min-height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+    }
+    html[data-theme="dark"], body[data-theme="dark"] {
+        background: #0f172a;
+    }
+    html[data-theme="light"], body[data-theme="light"] {
+        background: #f8fafc;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+<script src="/threejs-galaxy-bg.js"></script>
+<!-- three.js 银河粒子背景 end -->
+</html>
