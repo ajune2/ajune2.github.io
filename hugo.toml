@@ -2,18 +2,6 @@ baseURL = 'https://git.ajune.cn/'
 languageCode = 'en-us'
 title = 'AJUNE的个人空间'
 theme = "PaperMod"
-# disableKinds = ['taxonomy', 'term']
-# 启用 Hugo 资源压缩（minify）
-[minify]
-	disableXML = false
-	minifyOutput = true
-	[minify.tdewolff]
-		[minify.tdewolff.html]
-			keepWhitespace = false
-		[minify.tdewolff.css]
-			version = 2
-		[minify.tdewolff.js]
-			keepVarNames = false
 
 [[menu.main]]
 	identifier = "home"
@@ -44,3 +32,6 @@ theme = "PaperMod"
 	name = "例子"
 	url = "/apps/"
 	weight = 5
+
+[params]
+	defaultTheme = "dark"
